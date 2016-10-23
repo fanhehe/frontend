@@ -19,6 +19,7 @@ var webpackConfig = {
     },
     resolve: {
         alias: {
+            vue: 'vue/dist/vue.js' 
         }
     },
     module: {
@@ -34,7 +35,7 @@ var webpackConfig = {
             loader: 'style!css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
         },{
             test: /\.scss$/,
-            loader: 'style!css?modules&localIndentName=[name]__[local]__[hash:base64:5]!postcss!scss'
+            loader: 'style!css?modules&localIndentName=[name]__[local]__[hash:base64:5]!postcss!sass'
         },{
             test: /\.(png|gif|jpg|jpeg)$/,
             loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
