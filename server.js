@@ -4,20 +4,18 @@ var WebpackDevServer = require('webpack-dev-server');
 
 var complier = webpack(require('./webpack.config.js'));
 
-var env = process.env.NODE_ENV || "product";
-var publicPath = env === "product"? '/build': '/';
-var port = config[env].port;
-var ip = config[env].ip;
+var ip = config.ip;
+var port = config.port;
+var publicPath = config.webpack.publicPath;
 
-var server = WebpackDevServer(complier, {
+var server = new  WebpackDevServer(complier, {
     hot: true,
     compress: true,
     staticOptions: {},
-    publicPath:  '',
+    publicPath:  publicPath,
     contentBase: './build/',
-    stats: {color: true}
+    stats: { colors: true }
 });
-
 server.listen(port, ip, function () {
     console.log('=======> the server is running at ', ip, port);
 });
