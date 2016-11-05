@@ -3,13 +3,14 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 
 import Actions from './vuex/actions';
-import configRouter from './router';
 import App from './container/App.vue';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
-const router = new VueRouter();
+const routes = [{path: '/', component: App}];
+const router = new VueRouter({
+    mode: 'history',
+    routes,
+});
 
-configRouter(router);
-
-router.start(Vue.extends(App), '#app');
+const app = new Vue({router}).$mount('#app');

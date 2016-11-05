@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HMR = new webpack.HotModuleReplacementPlugin();
 
 var webpackConfig = {
-    devtool: '#eval-source-map',
+    devtool: 'cheap-module-eval-source-map',
     entry: {
         'index': ['./src/index.js'],
         'libs': ['vue', 'vuex', 'vue-router'],
