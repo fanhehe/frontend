@@ -59,6 +59,7 @@ var webpackConfig = {
         new HtmlWebpackPlugin({
             template: './index.temp.html',
             filename: 'index.html',
+            favicon: './favicon.ico',
             inject: 'body'
         })
     ],

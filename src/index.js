@@ -13,4 +13,7 @@ const router = new VueRouter({
     routes,
 });
 
+if (module.hot) {
+    module.hot.accept();
+}
 const app = new Vue({router}).$mount('#app');
