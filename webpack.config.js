@@ -6,9 +6,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HMR = new webpack.HotModuleReplacementPlugin();
 
 var webpackConfig = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: '#eval-source-map',
     entry: {
-        'index': './src/index.js',
+        'index': ['./src/index.js'],
         'libs': ['vue', 'vuex', 'vue-router'],
     },
     output: {
@@ -18,8 +18,9 @@ var webpackConfig = {
         chunkFilename: 'js/chunk/[name].[hash:6].js',
     },
     resolve: {
+        extensions: ['', '.js', '.vue', 'jsx'],
         alias: {
-            vue: 'vue/dist/vue.js' 
+            vue: 'vue/dist/vue.js'
         }
     },
     module: {
@@ -28,7 +29,7 @@ var webpackConfig = {
             loader: 'vue'
         },{
             test: /\.js$/,
-            loader: 'babel-loader',
+            loader: 'babel',
             exclude: /node_modules/
         },{
             test: /\.css$/,
@@ -64,7 +65,8 @@ var webpackConfig = {
 };
 
 if (config.env === 'development') {
-    webpackConfig.entry['hmr'] = 'webpack/hot/dev-server';
+    webpackConfig.entry.index.push('webpack/hot/dev-server');
+    webpackConfig.entry.libs.push('webpack/hot/dev-server');
     webpackConfig.plugins.push(HMR);
 }
 module.exports = webpackConfig;
