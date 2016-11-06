@@ -1,13 +1,12 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 
-import Actions from './vuex/actions';
-import App from './container/App.vue';
+import Routes from './routes/';
+import Store from './vuex/store';
 
-Vue.use(Vuex);
 Vue.use(VueRouter);
-const routes = [{path: '/', component: App}];
+
+const routes = Routes;
 const router = new VueRouter({
     mode: 'history',
     routes,
@@ -16,4 +15,4 @@ const router = new VueRouter({
 if (module.hot) {
     module.hot.accept();
 }
-const app = new Vue({router}).$mount('#app');
+const app = new Vue({router, store}).$mount('#app');

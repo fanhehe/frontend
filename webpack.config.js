@@ -1,9 +1,13 @@
 var path = require('path');
 var config = require('./config');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var HMR = new webpack.HotModuleReplacementPlugin();
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
+
 
 var webpackConfig = {
     devtool: 'cheap-module-eval-source-map',
@@ -24,6 +28,16 @@ var webpackConfig = {
         }
     },
     module: {
+        preLoaderss: [{
+            test: /\.vue$/,
+            loader: 'eslint',
+            exclude: /node_modules/
+        },{
+            test: /\.js$/,
+            loader: 'eslint',
+            exclude: /node_modules/
+        }],
+
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'
@@ -33,10 +47,10 @@ var webpackConfig = {
             exclude: /node_modules/
         },{
             test: /\.css$/,
-            loader: 'style!css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
+            loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss')
         },{
             test: /\.scss$/,
-            loader: 'style!css?modules&localIndentName=[name]__[local]__[hash:base64:5]!postcss!sass'
+            loader: 'style-loader!css?modules&localIndentName=[name]__[local]__[hash:base64:5]!postcss!sass'
         },{
             test: /\.(png|gif|jpg|jpeg)$/,
             loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
@@ -44,6 +58,7 @@ var webpackConfig = {
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin('css/[name]__[local]__[hash:base64:5].css',{ allChunks : true,resolve : ['modules'] }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'commons',
@@ -63,6 +78,13 @@ var webpackConfig = {
             inject: 'body'
         })
     ],
+    vue: {
+        loaders: {
+            css: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss')
+        },
+    },
+    eslint: {
+    }
 };
 
 if (config.env === 'development') {
