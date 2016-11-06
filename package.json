@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "babel-preset-stage-3": "^6.17.0",
+    "classnames": "^2.2.5",
     "extract-text-webpack-plugin": "^1.0.1",
     "vue-style-loader": "^1.0.0"
   }

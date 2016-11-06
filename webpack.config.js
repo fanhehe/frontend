@@ -58,7 +58,7 @@ var webpackConfig = {
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin('css/[name]__[local]__[hash:base64:5].css',{ allChunks : true,resolve : ['modules'] }),
+        new ExtractTextPlugin('css/[name].css?[contenthash:6]',{ allChunks : true,resolve : ['modules'] }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'commons',
@@ -80,7 +80,8 @@ var webpackConfig = {
     ],
     vue: {
         loaders: {
-            css: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss')
+            css: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss'),
+            sass: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss!sass')
         },
     },
     eslint: {
