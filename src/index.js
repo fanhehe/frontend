@@ -6,9 +6,11 @@ import Store from './vuex/store';
 
 Vue.use(VueRouter);
 
+const store = Store;
 const routes = Routes;
+
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes,
 });
 
