@@ -9,7 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpackConfig = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
-        'index': ['./src/index.js'],
+        'index': ['./src/main.js'],
         'libs': ['vue', 'vuex', 'vue-router'],
     },
     output: {
