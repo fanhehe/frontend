@@ -2,6 +2,9 @@ var path = require('path');
 var config = require('./config');
 var webpack = require('webpack');
 
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+
 var HMR = new webpack.HotModuleReplacementPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -81,6 +84,9 @@ var webpackConfig = {
             sass: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss!sass')
         },
     },
+    postcss: function () {
+        return [autoprefixer, precss];
+    }
 };
 
 if (config.env === 'development') {
