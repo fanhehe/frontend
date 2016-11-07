@@ -1,1 +1,1 @@
-export const getName = () => {}
+export const getName = () => {};

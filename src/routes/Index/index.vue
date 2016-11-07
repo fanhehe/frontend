@@ -7,10 +7,10 @@
 
 <script >
 export default {
-    data() {
-        return {msg: 'hehe'}
+    data: () => {
+        return { msg: 'hehe' };
     }
-}
+};
 </script>
 
 <style scoped>

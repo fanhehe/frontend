@@ -10,11 +10,11 @@ const store = Store;
 const routes = Routes;
 
 const router = new VueRouter({
-    mode: 'hash',
-    routes,
+	mode: 'hash',
+	routes: routes,
 });
 
 if (module.hot) {
-    module.hot.accept();
+	module.hot.accept();
 }
-const app = new Vue({router, store}).$mount('#app');
+new Vue({ router, store }).$mount('#app');

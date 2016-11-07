@@ -1,1 +1,1 @@
-module.exports = (action) => {console.log(1)}
+module.exports = () => { };

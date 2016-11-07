@@ -1,4 +1,4 @@
 export default [
-    require('./Index/'),
-    require('./Login/')
-]
+	require('./Index/'),
+	require('./Login/'),
+];

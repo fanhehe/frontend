@@ -6,9 +6,6 @@ var HMR = new webpack.HotModuleReplacementPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-
-
 var webpackConfig = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
@@ -28,7 +25,7 @@ var webpackConfig = {
         }
     },
     module: {
-        preLoaderss: [{
+        preLoaders: [{
             test: /\.vue$/,
             loader: 'eslint',
             exclude: /node_modules/
@@ -84,8 +81,6 @@ var webpackConfig = {
             sass: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss!sass')
         },
     },
-    eslint: {
-    }
 };
 
 if (config.env === 'development') {

@@ -6,7 +6,7 @@ import * as getters from './getters';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    actions,
-    getters,
-    modules: {},
+	actions,
+	getters,
+	modules: {},
 });

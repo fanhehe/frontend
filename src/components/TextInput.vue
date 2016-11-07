@@ -10,12 +10,12 @@
 
 <script>
     export default {
-        data () {return {value: ''}},
+        data () { return { value: '' }; },
         props: ['type', 'placeholder'],
         methods: {
-            
+
         }
-    }
+    };
 </script>
 
 <style lang = "sass">

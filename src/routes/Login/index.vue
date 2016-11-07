@@ -13,24 +13,22 @@
 </template>
 
 <script>
-    import cx from 'classnames';
     import TextInput from '../../components/TextInput';
 
     export default {
-        data: ()=> {
+        data () {
             return {
-                name: 'sssssiis'
-            }
+                name: 'sssssiis',
+            };
         },
         methods: {
             changed: function () {
-                concole.log(this.$refs);
             }
         },
         components: {
             TextInput,
         }
-    }
+    };
 
 </script>
 <style lang = "sass"></style>
