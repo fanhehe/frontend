@@ -1,0 +1,3 @@
+[submodule "Static"]
+	path = Static
+	url = https://github.com/FanHehe/Static.git

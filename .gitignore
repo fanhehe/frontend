@@ -4,3 +4,5 @@ build/
 npm-debug.log
 .idea/*
 .DS_Store
+Static/
+assets/

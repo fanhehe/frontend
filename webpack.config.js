@@ -13,7 +13,6 @@ var webpackConfig = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
         'index': ['./src/main.js'],
-        'libs': ['vue', 'vuex', 'vue-router'],
     },
     output: {
         path: path.join(__dirname, './build'),
@@ -91,7 +90,6 @@ var webpackConfig = {
 
 if (config.env === 'development') {
     webpackConfig.entry.index.push('webpack/hot/dev-server');
-    webpackConfig.entry.libs.push('webpack/hot/dev-server');
     webpackConfig.plugins.push(HMR);
 }
 module.exports = webpackConfig;
