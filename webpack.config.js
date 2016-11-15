@@ -9,6 +9,9 @@ var HMR = new webpack.HotModuleReplacementPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var NODE_MODULE = './node_modules';
+var moduleArray = ['vue/dist/vue.min.js', 'vue-router/dist/vue-router.min.js', 'vuex/dist/vuex.min.js'];
+
 var webpackConfig = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
@@ -23,7 +26,6 @@ var webpackConfig = {
     resolve: {
         extensions: ['', '.js', '.vue', 'jsx'],
         alias: {
-            vue: 'vue/dist/vue.js'
         }
     },
     module: {
@@ -54,10 +56,11 @@ var webpackConfig = {
             test: /\.(png|gif|jpg|jpeg)$/,
             loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
         }],
+        noParse: [],
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin('css/[name].css?[contenthash:6]',{ allChunks : true,resolve : ['modules'] }),
+        new ExtractTextPlugin('css/[name].[id].css?[contenthash:6]',{ allChunks : true,resolve : ['modules'] }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'commons',
@@ -88,8 +91,16 @@ var webpackConfig = {
     }
 };
 
+
+moduleArray.forEach(function (module) {
+    var modulePath = module ||path.resolve(module);
+    webpackConfig.resolve.alias[module.split(path.sep)[0]] = modulePath;
+    webpackConfig.module.noParse.push(modulePath);
+});
+
 if (config.env === 'development') {
     webpackConfig.entry.index.push('webpack/hot/dev-server');
     webpackConfig.plugins.push(HMR);
 }
+
 module.exports = webpackConfig;

@@ -35,7 +35,7 @@ export default {
         margin: 0;
     }
     .main-wrap {
-        background:url("./assets/background.png") #212737 repeat;
+        background: #212737 repeat;
     }
     .full-screen-client {
         position: absolute;
