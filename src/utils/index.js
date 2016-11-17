@@ -20,3 +20,26 @@ export function isClient () {
 export function isMobile () {
     return deviceDetect() === 'mobile';
 }
+
+export function setItemIntoStorage (name, value) {
+    const storage = window.localStorage;
+    storage.setItem(name, JSON.stringify(value));
+}
+
+export function getItemFromStorage (name) {
+    const storage = window.localStorage;
+    const value = storage.getItem(name);
+    return JSON.parse(value);
+}
+
+export function clearStorage () {
+    const storage = window.localStorage;
+    for (const key in storage) {
+        storage.removeItem(key);
+    }
+}
+export function removeItemFromStorage (name) {
+    const storage = window.localStorage;
+    storage.removeItem(name);
+    return true;
+}

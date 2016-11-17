@@ -19,17 +19,29 @@
 </template>
 
 <script >
+import { mapActions } from 'vuex';
 import { deviceDetect } from '../../utils/';
+
 export default {
     data: () => {
         return { msg: 'hehe' };
     },
     methods: {
+        ...mapActions([
+            'getSearchHistory',
+            'setSearchHistory',
+        ]),
         search (event) {
             const value = event.target.value.trim();
-            let href = 'https://www.baidu.com/s?wd=';
-            href = 'https://www.google.co.jp/#q=';
-            location.href = `${href}${value}`;
+            const { dispatch } = this.$store;
+            if (value.length > 0) {
+                let href = 'https://www.baidu.com/s?wd=';
+                href = 'https://www.google.co.jp/#q=';
+                dispatch('setSearchHistory', { value });
+                location.hre = `${href}${value}`;
+            } else {
+                return false;
+            }
         },
     },
     computed: {
@@ -176,7 +188,7 @@ export default {
                 border: 1px solid rgba(255, 255, 255, .5);
                 color: rgba(255, 255, 255, .5);
                 width: 80%;
-                max-width: 400px;
+                max-width: 40rem;
                 outline: 0;
 
                 &::selection {
