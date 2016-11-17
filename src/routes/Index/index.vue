@@ -8,10 +8,13 @@
             </nav>
         </div>
         <div class = "main-content">
-            <h1>Fanhehe</h1>
+            <h1>Fan hehe</h1>
+            <input type = "text" maxlength = "20" placeholder = "痕迹" tabindex="2" @keydown.13= "search" autofocus />
             <p>数是数以数的数。</p>
         </div>
-        <div class = "main-footer"></div>
+        <div class = "main-footer">
+            
+        </div>
     </div>
 </template>
 
@@ -21,7 +24,14 @@ export default {
     data: () => {
         return { msg: 'hehe' };
     },
-    methods: {},
+    methods: {
+        search (event) {
+            const value = event.target.value.trim();
+            let href = 'https://www.baidu.com/s?wd=';
+            href = 'https://www.google.co.jp/#q=';
+            location.href = `${href}${value}`;
+        },
+    },
     computed: {
         device_type () {
             const deviceType = deviceDetect() || 'client';
@@ -107,10 +117,13 @@ export default {
 
         .main-header {
             display: block;
+            position: relative;
+            z-index: 1;
             margin: 30px 0;
 
             nav {
                 text-align: right;
+                white-space: nowrap;
                 a {
                     font-size: 1.6rem;
                     display: inline-block;
@@ -129,21 +142,52 @@ export default {
             }
         }
 
-        .main-content {
-            color: #fff;
+        .main-content {    
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             position: absolute;
-            display: block;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 0;
 
+            color: #fff;
 
+            h1, p {
+                white-space: nowrap;
+
+            }
             h1 {
-                font-size: 0;
-                background: url("./assets/logo.png") no-repeat;
+                /*font-size: 0;*/
+                /*background: url("./assets/logo.png") no-repeat;*/
+                font-size: 3rem;
                 background-size: contain;
                 min-height: 3rem;
                 line-height: 3rem;
             }
+            
+            input {
+                background: transparent;
+                padding: 10 10px;
+                border: 1px solid rgba(255, 255, 255, .5);
+                color: rgba(255, 255, 255, .5);
+                width: 80%;
+                max-width: 400px;
+                outline: 0;
 
-            p1 {}
+                &::selection {
+                    background: green;
+                }
+
+                &:hover, &:focus {
+                    display: block;
+
+                }
+            }
         }
 
         .main-footer {
@@ -151,7 +195,12 @@ export default {
         }
     }
     .full-screen-mobile {
-        background: #000000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
     }
     .full-screen-client {
         position: absolute;
@@ -160,23 +209,5 @@ export default {
         right: 0;
         bottom: 0;
         z-index: 0;
-    }
-    .full-screen-client .main-footer {
-        bottom: 2rem;
-    }
-
-    .full-screen-client:after{
-        /*content: ".";*/
-        font-size: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        background: linear-gradient(to right bottom, 50% #1F2535, 75% transparent, 100% #212737);
-        filter: blur(400px);
-    }
-    .main-footer {
     }
 </style>

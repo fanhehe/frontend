@@ -1,1 +1,2 @@
-export const getName = () => {};
+export const getSearchContent = () => {};
+export const setSearchContent = () => {};
