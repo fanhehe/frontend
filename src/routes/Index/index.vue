@@ -19,7 +19,7 @@
 </template>
 
 <script >
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { deviceDetect } from '../../utils/';
 
 export default {
@@ -38,13 +38,14 @@ export default {
                 let href = 'https://www.baidu.com/s?wd=';
                 href = 'https://www.google.co.jp/#q=';
                 dispatch('setSearchHistory', { value });
-                location.hre = `${href}${value}`;
+                location.href = `${href}${value}`;
             } else {
                 return false;
             }
         },
     },
     computed: {
+        ...mapGetters(['isMobile', 'isClient']),
         device_type () {
             const deviceType = deviceDetect() || 'client';
             return `full-screen-${deviceType}`;

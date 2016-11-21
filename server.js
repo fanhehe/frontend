@@ -10,6 +10,8 @@ var publicPath = config.webpack.publicPath;
 
 var server = new  WebpackDevServer(complier, {
     hot: true,
+    quiet: true,
+    inline: true,
     compress: true,
     staticOptions: {},
     publicPath:  publicPath,

@@ -5,6 +5,10 @@ var webpack = require('webpack');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var dashboard = new Dashboard();
+
 var HMR = new webpack.HotModuleReplacementPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -59,6 +63,7 @@ var webpackConfig = {
         noParse: [],
     },
     plugins: [
+        new DashboardPlugin(dashboard.setData),
         new webpack.NoErrorsPlugin(),
         new ExtractTextPlugin('css/[name].[id].css?[contenthash:6]',{ allChunks : true,resolve : ['modules'] }),
         new webpack.optimize.OccurenceOrderPlugin(),
@@ -99,7 +104,7 @@ moduleArray.forEach(function (module) {
 });
 
 if (config.env === 'development') {
-    webpackConfig.entry.index.push('webpack/hot/dev-server');
+    webpackConfig.entry.index.push('webpack-dev-server/client?http://localhost:3000/','webpack/hot/dev-server');
     webpackConfig.plugins.push(HMR);
 }
 
