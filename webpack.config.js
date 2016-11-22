@@ -45,7 +45,13 @@ var webpackConfig = {
 
         loaders: [{
             test: /\.vue$/,
-            loader: 'vue'
+            loader: 'vue',
+            options: {
+                cssModules: {
+                     localIdentName: '[name]-[local]-[hash:base64:5]',
+                    camelCase: true
+                }
+            }
         },{
             test: /\.js$/,
             loader: 'babel',
@@ -87,8 +93,8 @@ var webpackConfig = {
     ],
     vue: {
         loaders: {
-            css: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss'),
-            sass: ExtractTextPlugin.extract('vue-style-loader', 'css!postcss!sass')
+            css: ExtractTextPlugin.extract('vue-style-loader', 'css?localIdentName=[name]__[local]__[hash:base64:5]!postcss'),
+            sass: ExtractTextPlugin.extract('vue-style-loader', 'css?localIdentName=[name]__[local]__[hash:base64:5]!postcss!sass')
         },
     },
     postcss: function () {
@@ -104,7 +110,7 @@ moduleArray.forEach(function (module) {
 });
 
 if (config.env === 'development') {
-    webpackConfig.entry.index.push('webpack-dev-server/client?http://localhost:3000/','webpack/hot/dev-server');
+    webpackConfig.entry.index.push(`webpack-dev-server/client?http://localhost:${config.port}/`,'webpack/hot/dev-server');
     webpackConfig.plugins.push(HMR);
 }
 

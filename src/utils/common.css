@@ -1,5 +1,31 @@
-html, body, h1, h2, h3, h4, h5, h6 {
-	padding: 0;
-	margin: 0;
-	display: block;
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}   ol,li,ul{margin:0; padding:0;}
+
+.btn-normal {
+	font-size: 1.6rem;
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+	color: #ffffff;
+	text-align: center;
+	padding: 0 10px;
+	box-sizing: border-box;
+	text-decoration: none;
+	white-space: nowrap;
+	width: 76px;
+	background-color: #59b0ff;
+	border-radius: 4px;
+
+	&:hover, &:active {
+		background-color: #4daaff;
+	}
+	&:live, &:visited {
+
+	};
+}
+
+.btn-comfirm {
+	
+}
+.btn-warning{
+
 }
