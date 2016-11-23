@@ -8,8 +8,12 @@
 					<div class = "blog-main">
 						<div class = "blog-nav">
 							<h2 class = "blog-title">发现</h2>
-							<nav>
-								<a v-for = "(item ,index) in navList" :class = "{ active: item.id === index }">{{ item.name }}</a>
+							<nav class = "blog-filter">
+								<a v-for = "(item ,index) in navList" 
+									:class = "{ active: index === filterActiveItem }"
+									@click = "handleClickFilter.bind(this, item)">
+									{{ item.name }}
+								</a>
 							</nav>
 						</div>
 						<div class = "blog-list-container">
@@ -17,8 +21,13 @@
 						</div>
 					</div>
 					<div class = "blog-slider">
-						<div class = "blog-hot-topic"></div>
+						<div class = "blog-hot-topic">
+							<span>热门话题</span>
+							<a href="#">更多</a>
+						</div>
 						<div class = "blog-hot-user">
+							<span>热门人物</span>
+							<a href="#">更多</a>
 						</div>
 					</div>
 				</div>
@@ -52,9 +61,15 @@
 				blogItemData,
 				blogList,
 				navList,
+				filterActiveItem: 0,
 			};
 		},
 		computed: {
+		},
+		methods: {
+			handleClickFilter (event, a) {
+				console.log(this, event, a);
+			},
 		},
 		components: {
 			Navigator,
@@ -79,6 +94,8 @@
 		background: #ffffff;
 
 		.blog-main {
+			display: flex;
+			flex-direction: column;
 			flex: 1px 5 0;
 		}
 		.blog-slider {
@@ -87,7 +104,37 @@
 			border-left: 1px solid #e6e6e6;
 		}
 	}
+	.blog-nav {
+		display: flex;
+		height: 64px;
+		align-items: center;
 
+		h2 {
+			height: 100%;
+			align-self: center;
+		}
+		.blog-filter {
+			display: flex;
+			height: 100%;
+			flex: 50px 1 0;
+			align-items: flex-end;
+			flex-direction: row-reverse;
+			box-sizing: border-box;
+			
+			.active {
+				font-weight: bold;
+				box-shadow: inset 0 -2px 0 0 #155FAA;
+			}
+			a {
+				box-sizing: border-box;
+				padding: 0 13px 5px;
+				
+				&:hover {
+					box-shadow: inset 0 -2px 0 0 #155FAA;
+				}
+			}
+		}
+	}
 	@media all and (max-width: 992px) {
 		.blog-wrap .blog-container {
 			width: 100%;
