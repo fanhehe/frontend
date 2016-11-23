@@ -18,8 +18,8 @@
 				<a ><i class = "fa fa-ellipsis-h more"></i></a>
 			</nav>
 			<div class = "nav-buttons">
-				<router-link to = "#" class = "nav-button-login" :class = "style['btn-normal']">登陆</router-link>
-				<router-link to = "#" class = "nav-button-register" :class = "style['btn-normal']">注册</router-link>
+				<a class = "nav-button-login" :class = "style['btn-normal']">登陆</a>
+				<a class = "nav-button-register" :class = "style['btn-normal']">注册</a>
 			</div>
 		</div>
 	</div>
@@ -58,6 +58,7 @@
 	}
 	body {
 		font-family: "Trebuchet MS",Helvetica,"Microsoft YaHei",Georgia,sans-serif;
+		background: #F0F0F0 repeat;
 		text-size-adjust:none;
 		font-size: 1.6rem;
 	}
@@ -81,7 +82,7 @@
 		}
 
 		.nav-title {
-			flex: 5rem 0 0;
+			flex: 50px 0 0;
 			font-size: 2rem;
 			color: #fff;
 			text-align: center;
@@ -91,7 +92,7 @@
 		}
 
 		.nav-search {
-			flex: 1rem 0 0;
+			flex: 165px 0 0;
 			display: flex;
 			align-items: center;
 			height: 100%;
@@ -155,6 +156,10 @@
 			}
 			.nav-button-register {
 				background: #38b836;
+
+				&:hover, &:active {
+					background: #4bc33a;
+				}
 			}
 		}
 	}
