@@ -17,4 +17,5 @@ const router = new VueRouter({
 if (module.hot) {
 	module.hot.accept();
 }
+Vue.config.devtools = true;
 new Vue({ router, store }).$mount('#app');

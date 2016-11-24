@@ -54,7 +54,9 @@
 		background: #ffffff;
 		box-sizing: border-box;
 		border-bottom: 1px solid #e6e6e6;
-
+		&:last-child {
+			border-bottom: none;
+		}
 
 		.blog-item-preview {
 			display: inline-block;
@@ -78,9 +80,11 @@
 		    padding-right: 20px;
 		    font-size: 14px;
 		    word-wrap: break-word;
-			color: 155faa;
 			text-transform: capitalize;
 
+			a {
+				color: #155faa;
+			}
 			a:hover, a:active {
 				color: #499ef3;
 			}
@@ -105,7 +109,7 @@
 				.classify-item {
 					padding: 0 5px;
 					border-radius: 2px;
-					box-sizing:border-box;
+					box-sizing: border-box;
 					background-color: #f2f2f2;
 					cursor: pointer;
 

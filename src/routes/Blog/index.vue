@@ -9,9 +9,9 @@
 						<div class = "blog-nav">
 							<h2 class = "blog-title">发现</h2>
 							<nav class = "blog-filter">
-								<a v-for = "(item ,index) in navList" 
-									:class = "{ active: index === filterActiveItem }"
-									@click = "handleClickFilter.bind(this, item)">
+								<a v-for = "item in navList" 
+									:class = "{ active: item.id === filterActiveItem }"
+									@click = "handleClickFilter($event, item)">
 									{{ item.name }}
 								</a>
 							</nav>
@@ -57,18 +57,19 @@
 				blogItemData,
 			];
 			const navList = [{ name: '最新', id: 0 }, { name: '推荐', id: 1 }, { name: '排名', id: 2 }];
+			const state = { filterActiveItem: 0 };
 			return {
 				blogItemData,
 				blogList,
 				navList,
-				filterActiveItem: 0,
+				...state,
 			};
 		},
 		computed: {
 		},
 		methods: {
-			handleClickFilter (event, a) {
-				console.log(this, event, a);
+			handleClickFilter (event, item) {
+				this.filterActiveItem = item.id;
 			},
 		},
 		components: {
@@ -85,6 +86,7 @@
 		width: 100%;
 	}
 	.blog-container {
+		width: 100%;
 		margin: auto;
 		padding: 0 	$pagePadding;
 		box-sizing: border-box;
@@ -92,6 +94,9 @@
 	.blog-main-wrap {
 		display: flex;
 		background: #ffffff;
+		padding: 0 20px;
+		border: 1px solid #e6e6e6;
+		box-shadow: 3px 3px 5px 0px #e6e6e6;
 
 		.blog-main {
 			display: flex;
@@ -107,19 +112,21 @@
 	.blog-nav {
 		display: flex;
 		height: 64px;
-		align-items: center;
+		align-items: stretch;
+		border-bottom: 1px solid #e6e6e6;
 
 		h2 {
 			height: 100%;
-			align-self: center;
+			display: flex;
+			align-items: center;
 		}
 		.blog-filter {
 			display: flex;
 			height: 100%;
 			flex: 50px 1 0;
 			align-items: flex-end;
-			flex-direction: row-reverse;
 			box-sizing: border-box;
+			justify-content: flex-end;
 			
 			.active {
 				font-weight: bold;
@@ -128,18 +135,14 @@
 			a {
 				box-sizing: border-box;
 				padding: 0 13px 5px;
+				margin: 0 2px;
 				
 				&:hover {
 					box-shadow: inset 0 -2px 0 0 #155FAA;
 				}
 			}
 		}
-	}
-	@media all and (max-width: 992px) {
-		.blog-wrap .blog-container {
-			width: 100%;
-		}
-	}
+	}		
 	@media all and (min-width: 993px) {
 		.blog-wrap .blog-container {
 			width: $maxWidth;
