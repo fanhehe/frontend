@@ -17,17 +17,21 @@
 							</nav>
 						</div>
 						<div class = "blog-list-container">
-							<blog-item v-for="item in blogList" :item = "item"></blog-item>	
+							<blog-item v-for="item in blogList" :data = "item"></blog-item>	
 						</div>
 					</div>
 					<div class = "blog-slider">
-						<div class = "blog-hot-topic">
-							<span>热门话题</span>
-							<a href="#">更多</a>
-						</div>
-						<div class = "blog-hot-user">
-							<span>热门人物</span>
-							<a href="#">更多</a>
+						<div v-for = "(item, index) of sliderArray"
+							:key = "index"  
+							class = "blog-slider-item" 
+							:class = "`blog-slider-${item.type}`">
+							<div class = "blog-slider-details">
+								<h3>{{ item.title }}</h3>
+								<a href="#">更多</a>
+							</div>
+							<div class="blog-slider-list-wrap">
+								<slider-item :data= "item.data" :type = "item.type"></slider-item>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -37,8 +41,10 @@
 </template>>
 
 <script>
-	import Navigator from '../../components/Navigator';
 	import BlogItem from '../../components/BlogItem';
+	import Navigator from '../../components/Navigator';
+	import SliderItem from '../../components/SliderItem';
+	
 	export default {
 		data () {
 			const blogItemData = {
@@ -56,13 +62,37 @@
 				blogItemData,
 				blogItemData,
 			];
-			const navList = [{ name: '最新', id: 0 }, { name: '推荐', id: 1 }, { name: '排名', id: 2 }];
+			const sliderArray = [{
+				title: '最近文章',
+				type: 'article',
+				data: [{
+					title: '钢铁是怎样炼成的',
+					username: 'fanhehe',
+					time: '2014-12-02',
+				}, {
+					title: 'vue',
+					username: 'fanhehe',
+					time: '2312321',
+				}, {
+					title: 'vue',
+					username: 'fanhehe',
+					time: '2312321',
+				}],
+			}, {
+				title: '热门话题',
+				type: 'topic',
+				data: [],
+			}];
+
 			const state = { filterActiveItem: 0 };
+			const navList = [{ name: '最新', id: 0 }, { name: '推荐', id: 1 }, { name: '排名', id: 2 }];
+
 			return {
-				blogItemData,
 				blogList,
 				navList,
 				...state,
+				blogItemData,
+				sliderArray,
 			};
 		},
 		computed: {
@@ -75,10 +105,11 @@
 		components: {
 			Navigator,
 			BlogItem,
+			SliderItem,
 		},
 	};
 </script>
-<style lang="sass">
+<style lang= "sass">
 	$maxWidth: 1010px;
 	$pagePadding: 15px;
 	.blog-wrap {
@@ -101,12 +132,21 @@
 		.blog-main {
 			display: flex;
 			flex-direction: column;
-			flex: 1px 5 0;
+			flex: 1px 3 0;
 		}
 		.blog-slider {
+			display: flex;
 			flex: 1px 1 0;
+			padding: 20px 0 0 20px;
+			flex-direction: column;
 			box-sizing: border-box;
+			max-width: 234px;
 			border-left: 1px solid #e6e6e6;
+
+			& > div:not(:last-child) {
+				border-bottom: 1px solid #e2e2e2;
+				margin-bottom: 20px;
+			}
 		}
 	}
 	.blog-nav {
@@ -136,16 +176,52 @@
 				box-sizing: border-box;
 				padding: 0 13px 5px;
 				margin: 0 2px;
+				color: #000000;
 				
 				&:hover {
 					box-shadow: inset 0 -2px 0 0 #155FAA;
 				}
 			}
 		}
-	}		
+	}
+	.blog-slider-item{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		font-size: 16px;
+		min-height: 28px;
+		white-space: nowrap;
+		
+		.blog-slider-details {
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: space-between;
+			white-space: nowrap;
+			margin-bottom: 10px;
+			a {
+				font-size: 12px;
+				text-align: left;
+			}
+			h3 {
+				font-size: 16px;
+				text-align: right;
+			}
+		}
+		.blog-slider-list-wrap {
+			width: 100%;
+		}
+	}
 	@media all and (min-width: 993px) {
 		.blog-wrap .blog-container {
 			width: $maxWidth;
 		}
 	}
+	@media all and (max-width: 992px) {
+		.blog-main-wrap .blog-slider {
+			display: none;
+		}
+	}
+	
 </style>

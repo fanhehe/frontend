@@ -1,21 +1,21 @@
 <template>
 	<div class = "blog-item-container">
-		<a class = "blog-item-preview" href="#"><img :src="item.preview || previewDefault" alt="这是一个头像" /></a>
+		<a class = "blog-item-preview" href="#"><img :src="data.preview || previewDefault" alt="这是一个头像" /></a>
 		<div class = "blog-item-main">
-			<h4 class = "blog-item-title"><a href="#">{{ item.title }}</a></h4>
+			<h4 class = "blog-item-title"><a href="#">{{ data.title }}</a></h4>
 			<div class = "blog-item-details">
 				<span class = "blog-item-classify">
 					<span class = "classify-item" 
-						v-for = "classifyItem of item.classify">
+						v-for = "classifyItem of data.classify">
 						{{ classifyItem }}
 					</span>
 				</span>
-				<span class = "blog-item-username">来自 <a href= "#">{{ item.username }}</a></span>
-				<span class = "blog-item-commentCounts">{{ item.commentCounts}}个评论</span>
-				<span class = "blog-item-time">{{ item.time | toTime}}</span>
+				<span class = "blog-item-username">来自 <a href= "#">{{ data.username }}</a></span>
+				<span class = "blog-item-commentCounts">{{ data.commentCounts}}个评论</span>
+				<span class = "blog-item-time">{{ data.time | toTime}}</span>
 			</div>
 			<div class = "blog-item-content">
-				{{ item.content }}
+				{{ data.content }}
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 				previewDefault: require('./assets/preview-default.png'),
 			};
 		},
-		props: ['item'],
+		props: ['data'],
 		computed: {
 
 		},
