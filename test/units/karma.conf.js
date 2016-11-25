@@ -3,31 +3,20 @@
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
 
-var path = require('path')
-var merge = require('webpack-merge')
-var config = require('../../webpack.config.js')
-var projectRoot = path.resolve(__dirname, '../../')
+var path = require('path');
+var merge = require('webpack-merge');
+var config = require('../../webpack.config.js');
+var projectRoot = path.resolve(__dirname, '../../');
 
 var webpackConfig = merge(config, {
   // use inline sourcemap for karma-sourcemap-loader
   devtool: '#inline-source-map',
-  vue: {
-    loaders: {
-      js: 'isparta'
-    }
-  }
-})
+});
 
 // no need for app entry during tests
 delete webpackConfig.entry
 
-// make sure isparta loader is applied before eslint
 webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || []
-webpackConfig.module.preLoaders.unshift({
-  test: /\.js$/,
-  loader: 'isparta',
-  include: path.resolve(projectRoot, 'src')
-})
 
 // only apply babel for test files when using isparta
 webpackConfig.module.loaders.some(function (loader, i) {
