@@ -1,70 +1,89 @@
 <template>
-	<div class="container">
-	  <div class="night-sky"></div>
-	  <div class="stars"></div>
-	  <div class="stars2"></div>
-	  <div class="stars3"></div>
-	  <div class="mountains">
-	    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" preserveAspectRatio="xMaxYMin meet" viewbox="0 0 110 160">
-	      <!-- Where the magic happens -->
-	      <defs>
-	        <polygon id="tall"
-	                 points="0,100 100,0 200,100"
-	                 stroke-linejoin="round"
-	                 stroke-linecap="round"
-	                 stroke="#311B46" stroke-width="5"
-	                 fill="#311B46" />
+  <div class = "wrap">
+  	<div class="container">
+  	  <div class="night-sky"></div>
+  	  <div class="stars"></div>
+  	  <div class="stars2"></div>
+  	  <div class="stars3"></div>
+  	  <div class="mountains">
+  	    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" preserveAspectRatio="xMaxYMin meet" viewbox="0 0 110 160">
+  	      <!-- Where the magic happens -->
+  	      <defs>
+  	        <polygon id="tall"
+  	                 points="0,100 100,0 200,100"
+  	                 stroke-linejoin="round"
+  	                 stroke-linecap="round"
+  	                 stroke="#311B46" stroke-width="5"
+  	                 fill="#311B46" />
 
-	        <polygon id="long"
-	                 points="0,70 80,0 160,70"
-	                 stroke-linejoin="round"
-	                 stroke-linecap="round"
-	                 stroke="#963D5A" stroke-width="5"
-	                 fill="#963D5A" />
+  	        <polygon id="long"
+  	                 points="0,70 80,0 160,70"
+  	                 stroke-linejoin="round"
+  	                 stroke-linecap="round"
+  	                 stroke="#963D5A" stroke-width="5"
+  	                 fill="#963D5A" />
 
-	        <polygon id="short"
-	                 points="0,100 80,0 160,100"
-	                 stroke-linejoin="round"
-	                 stroke-linecap="round"
-	                 stroke="#FFA987" stroke-width="5"
-	                 fill="#FFA987" />
+  	        <polygon id="short"
+  	                 points="0,100 80,0 160,100"
+  	                 stroke-linejoin="round"
+  	                 stroke-linecap="round"
+  	                 stroke="#FFA987" stroke-width="5"
+  	                 fill="#FFA987" />
 
-	        <g id="mountain-range">
-	          <use xlink:href="#tall" x="-220" y="30"/>
-	          <use xlink:href="#tall" x="-180" y="40"/>
-	          <use xlink:href="#tall" x="-100" y="60"/>
-	          <use xlink:href="#tall" x="0" y="40"/>
-	          <use xlink:href="#tall" x="90" y="20"/>
-	          <use xlink:href="#tall" x="150" y="50"/>
+  	        <g id="mountain-range">
+  	          <use xlink:href="#tall" x="-220" y="30"/>
+  	          <use xlink:href="#tall" x="-180" y="40"/>
+  	          <use xlink:href="#tall" x="-100" y="60"/>
+  	          <use xlink:href="#tall" x="0" y="40"/>
+  	          <use xlink:href="#tall" x="90" y="20"/>
+  	          <use xlink:href="#tall" x="150" y="50"/>
 
-	          <use xlink:href="#long" x="-180" y="60"/>
-	          <use xlink:href="#long" x="-150" y="70"/>
-	          <use xlink:href="#long" x="-70" y="65"/>
-	          <use xlink:href="#long" x="20" y="70"/>
-	          <use xlink:href="#long" x="90" y="60"/>
-	          <use xlink:href="#long" x="180" y="50"/>
+  	          <use xlink:href="#long" x="-180" y="60"/>
+  	          <use xlink:href="#long" x="-150" y="70"/>
+  	          <use xlink:href="#long" x="-70" y="65"/>
+  	          <use xlink:href="#long" x="20" y="70"/>
+  	          <use xlink:href="#long" x="90" y="60"/>
+  	          <use xlink:href="#long" x="180" y="50"/>
 
-	          <use xlink:href="#short" x="-160" y="90"/>
-	          <use xlink:href="#short" x="-110" y="70"/>
-	          <use xlink:href="#short" x="100" y="90"/>
-	        </g>
-	      </defs>
+  	          <use xlink:href="#short" x="-160" y="90"/>
+  	          <use xlink:href="#short" x="-110" y="70"/>
+  	          <use xlink:href="#short" x="100" y="90"/>
+  	        </g>
+  	      </defs>
 
-	      <use xlink:href="#mountain-range" x="-100%" y="55"/>
-	      <use xlink:href="#mountain-range" x="-500%" y="55"/>
-	      <use xlink:href="#mountain-range" x="-760%" y="45"/>
-	      <use xlink:href="#mountain-range" x="-1000%" y="45"/>
-	      <use xlink:href="#mountain-range" x="-1500%" y="55"/>
-	      <use xlink:href="#mountain-range" x="-1760%" y="45"/>
-	      <use xlink:href="#mountain-range" x="-2250%" y="45"/>
-	      <use xlink:href="#mountain-range" x="-2700%" y="55"/>
-	    </svg>
-	  </div>
-	  <h1 class="title">Full Stack</h1>
-	</div>
+  	      <use xlink:href="#mountain-range" x="-100%" y="55"/>
+  	      <use xlink:href="#mountain-range" x="-500%" y="55"/>
+  	      <use xlink:href="#mountain-range" x="-760%" y="45"/>
+  	      <use xlink:href="#mountain-range" x="-1000%" y="45"/>
+  	      <use xlink:href="#mountain-range" x="-1500%" y="55"/>
+  	      <use xlink:href="#mountain-range" x="-1760%" y="45"/>
+  	      <use xlink:href="#mountain-range" x="-2250%" y="45"/>
+  	      <use xlink:href="#mountain-range" x="-2700%" y="55"/>
+  	    </svg>
+  	  </div>
+  	</div>
+    <div class = "main-container">
+      <div class = "slider" id = "slider1">
+        <div>Fan hehe</div>
+        
+      </div>
+      <div class = "slider" id = "slider2">3</div>
+      <div class = "slider" id = "slider3">4</div>
+      <div class = "slider" id = "slider4">5</div>
+      <div class = "slider" id = "slider5">6</div>
+      <div class = "slider" id = "slider6">7</div>
+      <div class = "slider" id = "slider7">8</div>
+      <div class = "slider" id = "slider8">9</div>
+      <div class = "slider" id = "slider9">0</div>
+    </div>
+    <div class = "sidebar"></div>
+  </div>
 </template>
 
-<script></script>
+<script>
+  export default {
+  };
+</script>
 
 <style lang = "sass">
 
@@ -90,34 +109,17 @@ body {
   height: 100%;
   margin: 0;
 }
-
-.container { 
+.wrap {
   position: relative;
+  width: 100%;
+  height: 100%;
+}
+.container { 
+  z-index: -1;
+  position: fixed;
   width: 100%; 
   height: 100%; 
 }
-
-.title {
-  font-family: 'Megrim', Georgia, serif;
-  font-size: 50px;
-  line-height: 50px;
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  top: 20%;
-  
-  color: white;
-  letter-spacing: .3em;
-  
-  /* Smooth our font */
-  text-transform: uppercase;
-  text-shadow: 1px 2px 1px rgba(black, .2);
-   -webkit-font-smoothing: antialiased;
-  
-  z-index: 100;
-  margin: 0; padding: 0;
-}
-
 .mountains { 
   position: absolute;
   width: $width;
@@ -203,13 +205,14 @@ body {
   }
 }
 
+.main-container {
+  width: 100%;
+  height: 100%;
 
-/* Adjust title */
-@media (max-width: 1000px) {
-  .title { font-size: 32px;}
-}
-
-@media (max-width: 550px) {
-  .title { display: none; }
+  .slider {
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
