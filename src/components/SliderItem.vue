@@ -6,19 +6,23 @@
 			<div class = "slider-item-right">
 				<h4 ><a :href= "item.articleHref"> {{ item.title }}</a></h4>
 				<div class = "slider-item-details">
-					<span>来自 <a :href ="item.userHref">{{ item.username }}</a></span>
-					<span>{{ item.time }}</span>
+					<span class = "slider-item-username">来自 <a :href ="item.userHref">{{ item.username }}</a></span>
+					<span>{{ item.time | convertTimestampToDate }}</span>
 				</div>
 			</div>
 		</div>
 	<div>
 </template>
 <script>
+	import convertTimestampToDate from '../utils/DateFormater';
 	export default {
 		data () {
 			return {};
 		},
 		props: ['data'],
+		filters: {
+			convertTimestampToDate,
+		}
 	};
 </script>
 <style lang = "sass">
@@ -28,7 +32,7 @@
 	.slider-item {
 		display: flex;
 		height: 40px;
-		margin-bottom: 5px;
+		margin-bottom: 2px;
 		max-width: 100%;
 		
 		.slider-item-left {
@@ -61,6 +65,12 @@
 		.slider-item-details {
 			display: flex;
 			justify-content: flex-end;
+
+			.slider-item-username {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
 			& > span {
 				font-size: 12px;
 				color: #999999;
@@ -69,6 +79,7 @@
 				content: '·';
 				padding: 0 5px;
 				vertical-align: middle;
+
 			}
 		}
 	}

@@ -12,7 +12,7 @@
 				</span>
 				<span class = "blog-item-username">来自 <a href= "#">{{ data.username }}</a></span>
 				<span class = "blog-item-commentCounts">{{ data.commentCounts}}个评论</span>
-				<span class = "blog-item-time">{{ data.time | toTime}}</span>
+				<span class = "blog-item-time">{{ data.time | convertTimestampToDate }}</span>
 			</div>
 			<div class = "blog-item-content">
 				{{ data.content }}
@@ -21,6 +21,7 @@
 	</div>
 </template>
 <script>
+	import convertTimestampToDate from '../utils/DateFormater';
 	export default {
 		data () {
 			return {
@@ -42,6 +43,7 @@
 				const result = `${Y}-${M}-${D} ${h}:${m}`;
 				return result;
 			},
+			convertTimestampToDate,
 		},
 	};
 </script>

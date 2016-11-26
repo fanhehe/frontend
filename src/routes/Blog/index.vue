@@ -3,11 +3,11 @@
 		<Navigator />
 		<div class = "blog-wrap">
 			<div class = "blog-container">
-				<div></div>
+				<div class= "blog-padding"></div>
 				<div class = "blog-main-wrap">
 					<div class = "blog-main">
 						<div class = "blog-nav">
-							<h2 class = "blog-title">发现</h2>
+							<h2 class = "blog-title"><i class = "fa fa-list"></i>发现</h2>
 							<nav class = "blog-filter">
 								<a v-for = "item in navList" 
 									:class = "{ active: item.id === filterActiveItem }"
@@ -27,7 +27,7 @@
 							:class = "`blog-slider-${item.type}`">
 							<div class = "blog-slider-details">
 								<h3>{{ item.title }}</h3>
-								<a href="#">更多</a>
+								<a href="#">更多></a>
 							</div>
 							<div class="blog-slider-list-wrap">
 								<slider-item :data= "item.data" :type = "item.type"></slider-item>
@@ -37,6 +37,7 @@
 				</div>
 			</div>
 		</div>
+		<Copyright />
 	<div>
 </template>>
 
@@ -44,6 +45,7 @@
 	import BlogItem from '../../components/BlogItem';
 	import Navigator from '../../components/Navigator';
 	import SliderItem from '../../components/SliderItem';
+	import Copyright from '../../components/Copyright';
 	
 	export default {
 		data () {
@@ -81,7 +83,15 @@
 			}, {
 				title: '热门话题',
 				type: 'topic',
-				data: [],
+				data: [{
+					title: '钢铁是怎样炼成的',
+					username: 'fanhehesssssssssssssssssssssssssss',
+					time: '2014-12-02',
+				}, {
+					title: '钢铁是怎样炼成的',
+					username: 'fanhehe',
+					time: '2014-12-02',
+				}],
 			}];
 
 			const state = { filterActiveItem: 0 };
@@ -95,8 +105,6 @@
 				sliderArray,
 			};
 		},
-		computed: {
-		},
 		methods: {
 			handleClickFilter (event, item) {
 				this.filterActiveItem = item.id;
@@ -106,6 +114,7 @@
 			Navigator,
 			BlogItem,
 			SliderItem,
+			Copyright,
 		},
 	};
 </script>
@@ -121,6 +130,10 @@
 		margin: auto;
 		padding: 0 	$pagePadding;
 		box-sizing: border-box;
+
+		.blog-padding {
+			height: 150px;
+		}
 	}
 	.blog-main-wrap {
 		display: flex;
@@ -159,6 +172,11 @@
 			height: 100%;
 			display: flex;
 			align-items: center;
+
+			i {
+				display: inline-block;
+				margin-right: 5px;
+			}
 		}
 		.blog-filter {
 			display: flex;
