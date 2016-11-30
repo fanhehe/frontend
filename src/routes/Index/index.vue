@@ -4,13 +4,19 @@
         <div class = "main-header">
             <nav>
                 <a href = "https://github.com/fanhehe" target = "_black">Github</a>
-                <router-link :to = "{name: 'about', path: 'about'}">About</router-link>
+                <a class = "dropdown-btn">
+                ...
+                <div class = "dropdown">
+                    <router-link :to = "'blog'">博客</router-link>
+                    <router-link :to = "'about'">关于</router-link>
+                </div>
+                </a>
             </nav>
         </div>
         <div class = "main-content">
             <h1>Fan hehe</h1>
             <input type = "text" maxlength = "20" placeholder = "痕迹" tabindex="2" @keydown.13= "search" autofocus />
-            <p>数是数以数的数。</p>
+            <p>数是数以数的数</p>
         </div>
         <div class = "main-footer">
             
@@ -137,8 +143,9 @@ export default {
             nav {
                 text-align: right;
                 white-space: nowrap;
-                a {
+                & > a {
                     font-size: 1.6rem;
+                    position: relative;
                     display: inline-block;
                     padding: 8px 16px;
                     border: 1px solid #fff;
@@ -152,6 +159,39 @@ export default {
                         outline: none;
                     }
                 }
+            }
+            .dropdown-btn:hover .dropdown{
+                opacity: 1;
+                display: block;
+            }
+            .dropdown {
+                display: none;
+                
+                left: 0;
+                opacity: 0;
+                width: 100%;
+                padding: 10px 0;
+                position: absolute;
+                text-align:center;
+                transition: opacity 1s ease-in-out;
+                
+
+                & > a {
+                    font-size: 12px;
+                    display: flex;
+                    box-sizing: border-box;
+                    max-width: 100%;
+                    justify-content: center;
+                    color: #fff;
+                    cursor: pointer;
+                    padding: 2.5px 0;
+                    
+                    &:hover {
+                        color: red;
+                        border: 2px solid #fff;
+                        border-width: 0 2px;
+                    }
+                } 
             }
         }
 
@@ -172,7 +212,7 @@ export default {
 
             h1, p {
                 white-space: nowrap;
-
+                padding: .5rem 0;
             }
             h1 {
                 /*font-size: 0;*/
@@ -181,6 +221,7 @@ export default {
                 background-size: contain;
                 min-height: 3rem;
                 line-height: 3rem;
+                padding: .5rem 0;
             }
             
             input {
