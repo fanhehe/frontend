@@ -42,11 +42,15 @@
 </template>>
 
 <script>
+	import { mapActions } from 'vuex';
+	// constants
+	import { blog as types } from '../../constants/vuex';
+	// modules
 	import BlogItem from '../../components/BlogItem';
 	import Navigator from '../../components/Navigator';
 	import SliderItem from '../../components/SliderItem';
 	import Copyright from '../../components/Copyright';
-	
+
 	export default {
 		data () {
 			const blogItemData = {
@@ -107,8 +111,18 @@
 		},
 		methods: {
 			handleClickFilter (event, item) {
-				this.filterActiveItem = item.id;
+				const { dispatch } = this.$store;
+				const type = types.GET_BLOG_LIST;
+				dispatch(type, {
+					success: () => {
+						console.log('successful', this);
+					},
+					error: () => {
+						console.log(this);
+					},
+				});
 			},
+			... mapActions(['queryTopic']),
 		},
 		components: {
 			Navigator,

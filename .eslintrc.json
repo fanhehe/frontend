@@ -36,6 +36,9 @@
             "error", {
                 "allow": ["warn", "log"]
             }
+        ],
+        "handle-callback-err": [
+            "warn"
         ]
     }
 }

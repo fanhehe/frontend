@@ -1,6 +1,8 @@
 import * as utils from '../utils';
+import fetch from '../utils/fetch';
 
 const SEARCH_HISTORY = 'SEARCH_HISTORY';
+
 export function getSearchHistory () {
 	const name = SEARCH_HISTORY;
 	const getItem = utils.getItemFromStorage;
@@ -19,4 +21,13 @@ export function setSearchHistory ({ state, commit }, payload) {
 	historyArray.unshift(value);
 	setItem(name, historyArray);
 	return true;
+}
+
+export function queryTopic ({ state, commit }, payload) {
+	const path = '/api/v1/topics';
+	fetch.get(path).end(function (err, data) {
+		console.log(data);
+	}).catch(function (err) {
+		console.log('err', err);
+	});
 }

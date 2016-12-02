@@ -28,7 +28,7 @@ var webpackConfig = {
         chunkFilename: 'js/chunk/[name].[hash:6].js',
     },
     resolve: {
-        extensions: ['', '.js', '.vue', 'jsx'],
+        extensions: ['', '.js', 'json', '.vue', 'jsx'],
         alias: {
         }
     },
@@ -40,9 +40,8 @@ var webpackConfig = {
         },{
             test: /\.js$/,
             loader: 'eslint',
-            exclude: /node_modules/
+            exclude: [/node_modules/, /utils/],
         }],
-
         loaders: [{
             test: /\.vue$/,
             loader: 'vue',

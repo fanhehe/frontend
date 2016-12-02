@@ -1,9 +1,9 @@
 {
     "development": {
+        "host": "https://cnodejs.org/api/v1",
         "env": "development",
         "ip": "0.0.0.0",
         "port": "3000",
-        "host": "https://cnodejs.org",
         "webpack": {
             "publicPath": "/",
             "path": "./build"
@@ -14,10 +14,10 @@
         }
     },
     "product": {
+        "host": "https://cnodejs.org/api/v1",
         "env": "product",
         "ip": "0.0.0.0",
         "port": "5000",
-        "host": "https://cnodejs.org",
         "webpack": {
             "publicPath": "/",
             "path": "./build"

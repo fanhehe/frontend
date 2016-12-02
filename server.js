@@ -8,6 +8,12 @@ var ip = config.ip;
 var port = config.port;
 var publicPath = config.webpack.publicPath;
 
+var proxy = [{
+	path: '/api/*',
+    host: 'cnodejs.org',
+	target: 'https://cnodejs.org/api/vi',
+}];
+
 var server = new  WebpackDevServer(complier, {
     hot: true,
     quiet: true,
