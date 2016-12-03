@@ -9,7 +9,7 @@
 						<div class = "blog-nav">
 							<h2 class = "blog-title"><i class = "fa fa-list"></i>发现</h2>
 							<nav class = "blog-filter">
-								<a v-for = "item in navList" 
+								<a v-for = "item in blog.navList " 
 									:class = "{ active: item.id === filterActiveItem }"
 									@click = "handleClickFilter($event, item)">
 									{{ item.name }}
@@ -17,11 +17,11 @@
 							</nav>
 						</div>
 						<div class = "blog-list-container">
-							<blog-item v-for="item in blogList" :data = "item"></blog-item>	
+							<blog-item v-for="item in blog.blogList" :data = "item"></blog-item>	
 						</div>
 					</div>
 					<div class = "blog-slider">
-						<div v-for = "(item, index) of sliderArray"
+						<div v-for = "(item, index) of blog.sliderArray"
 							:key = "index"  
 							class = "blog-slider-item" 
 							:class = "`blog-slider-${item.type}`">
@@ -42,7 +42,7 @@
 </template>>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions, mapState } from 'vuex';
 	// constants
 	import { blog as types } from '../../constants/vuex';
 	// modules
@@ -53,74 +53,19 @@
 
 	export default {
 		data () {
-			const blogItemData = {
-				title: 'main',
-				username: 'fanhehe',
-				preview: '',
-				classify: ['前端', 'javascript'],
-				content: '你可以像绑定普通属性一样在模板中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 中绑定计算属性。Vue 知道 vm.b 依赖于 vm.a，因此当 vm.a 发生改变时，依赖于 vm.b 的绑定也会更新。而且最妙的是我们是声明式地创建这种依赖关系：计算属性的 getter 是干净无副作用的，因此也是易于测试和理解的',
-				commentCounts: 10,
-				scannerCounts: 7,
-				time: 1479867410,
-			};
-			const blogList = [
-				blogItemData,
-				blogItemData,
-				blogItemData,
-			];
-			const sliderArray = [{
-				title: '最近文章',
-				type: 'article',
-				data: [{
-					title: '钢铁是怎样炼成的',
-					username: 'fanhehe',
-					time: '2014-12-02',
-				}, {
-					title: 'vue',
-					username: 'fanhehe',
-					time: '2312321',
-				}, {
-					title: 'vue',
-					username: 'fanhehe',
-					time: '2312321',
-				}],
-			}, {
-				title: '热门话题',
-				type: 'topic',
-				data: [{
-					title: '钢铁是怎样炼成的',
-					username: 'fanhehesssssssssssssssssssssssssss',
-					time: '2014-12-02',
-				}, {
-					title: '钢铁是怎样炼成的',
-					username: 'fanhehe',
-					time: '2014-12-02',
-				}],
-			}];
-
 			const state = { filterActiveItem: 0 };
-			const navList = [{ name: '最新', id: 0 }, { name: '推荐', id: 1 }, { name: '排名', id: 2 }];
-
 			return {
-				blogList,
-				navList,
 				...state,
-				blogItemData,
-				sliderArray,
 			};
+		},
+		computed: {
+			...mapState(['blog']),
 		},
 		methods: {
 			handleClickFilter (event, item) {
 				const { dispatch } = this.$store;
 				const type = types.GET_BLOG_LIST;
-				dispatch(type, {
-					success: () => {
-						console.log('successful', this);
-					},
-					error: () => {
-						console.log(this);
-					},
-				});
+				dispatch(type, {});
 			},
 			... mapActions(['queryTopic']),
 		},
@@ -130,6 +75,12 @@
 			SliderItem,
 			Copyright,
 		},
+		mounted () {
+			const type = types.GET_BLOG_LIST;
+			const { dispatch } = this.$store;
+			console.log('xxx');
+			dispatch(type);
+		},
 	};
 </script>
 <style lang= "sass">
@@ -137,6 +88,7 @@
 	$pagePadding: 15px;
 	.blog-wrap {
 		position: relative;
+		overflow: hidden;
 		width: 100%;
 	}
 	.blog-container {
@@ -156,6 +108,10 @@
 		border: 1px solid #e6e6e6;
 		box-shadow: 3px 3px 5px 0px #e6e6e6;
 
+		& > div {
+			max-width: 100%;
+			box-sizing: border-box;
+		}
 		.blog-main {
 			display: flex;
 			flex-direction: column;
@@ -174,6 +130,10 @@
 				border-bottom: 1px solid #e2e2e2;
 				margin-bottom: 20px;
 			}
+		}
+		.blog-list-container {
+			max-width: 100%;
+			box-sizing: border-box;
 		}
 	}
 	.blog-nav {

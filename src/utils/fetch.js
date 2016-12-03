@@ -125,7 +125,6 @@ export function fetch2 (method, path, options) {
 			commit(type, {
 				data,
 			});
-			
 		} else {
 			error();
 		}

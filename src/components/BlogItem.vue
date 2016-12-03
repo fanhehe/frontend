@@ -10,13 +10,11 @@
 						{{ classifyItem }}
 					</span>
 				</span>
-				<span class = "blog-item-username">来自 <a href= "#">{{ data.username }}</a></span>
-				<span class = "blog-item-commentCounts">{{ data.commentCounts}}个评论</span>
-				<span class = "blog-item-time">{{ data.time | convertTimestampToDate }}</span>
+				<span class = "blog-item-username">来自 <a href= "#">{{ data.author.loginname }}</a></span>
+				<span class = "blog-item-commentCounts">{{ data.reply_count}}个评论</span>
+				<span class = "blog-item-time">{{ data.create_at | convertTimestampToDate }}</span>
 			</div>
-			<div class = "blog-item-content">
-				{{ data.content }}
-			</div>
+			<div class = "blog-item-content" v-html = "data.content"></div>
 		</div>
 	</div>
 </template>
@@ -29,25 +27,14 @@
 			};
 		},
 		props: ['data'],
-		computed: {
-
-		},
 		filters: {
-			toTime (value) {
-				const date = new Date(value);
-				const Y = date.getFullYear();
-				const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-				const D = date.getDate();
-				const h = date.getHours();
-				const m = date.getMinutes();
-				const result = `${Y}-${M}-${D} ${h}:${m}`;
-				return result;
-			},
 			convertTimestampToDate,
+			converTimeFromString (value) {
+			},
 		},
 	};
 </script>
-<style lang="sass">
+<style lang = "sass">
 	.blog-item-container {
 		display: flex;
 		flex-direction: row;
@@ -56,36 +43,44 @@
 		background: #ffffff;
 		box-sizing: border-box;
 		border-bottom: 1px solid #e6e6e6;
+		overflow: hidden;
+
 		&:last-child {
 			border-bottom: none;
 		}
 
 		.blog-item-preview {
-			display: inline-block;
+			height: 40px;
 			flex: 40px 0 0;
-			border-radius: 4px;
 			overflow: hidden;
+			border-radius: 4px;
 
 			img {
+				height: auto;
 				max-width: 100%;
 				display: inline-block;
-				height: auto;
 			}
 		}
 		.blog-item-main {
 			padding: 0 10px;
+			overflow: hidden;
+			box-sizing: border-box;
 		}
 	}
 	.blog-item-main {
 		.blog-item-title {
 			margin: 0 0 3px;
-		    padding-right: 20px;
 		    font-size: 14px;
 		    word-wrap: break-word;
 			text-transform: capitalize;
 
 			a {
 				color: #155faa;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				text-overflow: ellipsis;
+				-webkit-box-orient: vertical;
 			}
 			a:hover, a:active {
 				color: #499ef3;
@@ -129,7 +124,9 @@
 			color: #666666;
 			font-size: 14px;
 			line-height: 1.4;
-			max-height: 130px;
+			max-height: 160px;
+			overflow: hidden;
+			max-width: 100%;
 		}
 
 	}

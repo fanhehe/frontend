@@ -7,7 +7,6 @@ import * as getters from './getters';
 import * as mutations from './mutations';
 
 Vue.use(Vuex);
-console.log(modules);
 export default new Vuex.Store({
 	state,
 	actions,
