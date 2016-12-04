@@ -1,16 +1,20 @@
 <template>
 	<ul class="page-container">
-		<li @click = "onClickPageItem(firstPage)">首页</li>
-		<li @click = "onClickPageItem(prevPage)">上一页</li>
-		<li v-for = "item in pageLimit"
+		<li v-if = "isnotFirstPage"
+			@click = "onClickPageItem(firstPage)">首页</li>
+		<li v-if = "isnotFirstPage"
+			@click = "onClickPageItem(prevPage)">上一页</li>
+		<li v-for = "item in pageList"
 			class = "page-item"
 			:class = "{active: curPage === item}"
 			@click = "onClickPageItem(item)"
 		>
 			{{item}}
 		</li>
-		<li @click = "onClickPageItem(nextPage)">下一页</li>
-		<li @click = "onClickPageItem(lastPage)">尾页</li>
+		<li v-if = "isnotLastPage" 
+			@click = "onClickPageItem(nextPage)">下一页</li>
+		<li v-if = "isnotLastPage"
+			@click = "onClickPageItem(lastPage)">尾页</li>
 	</ul>
 </template>
 <script>
@@ -27,7 +31,7 @@
 				return this.maxPage;
 			},
 			prevPage () {
-				const firstPage = 1;
+				const firstPage = this.firstPage;
 				const prevPage = this.curPage - 1;
 				return prevPage >= firstPage ? prevPage : firstPage;
 			},
@@ -36,13 +40,25 @@
 				const nextPage = this.curPage + 1;
 				return nextPage >= maxPage ? maxPage : nextPage;
 			},
-			isFirstPage () {
-				return this.curPage === this.firstPage;
+			isnotFirstPage () {
+				return this.curPage !== this.firstPage;
 			},
-			isLastPage () {
-				return this.curPage === this.maxPage;
+			isnotLastPage () {
+				return this.curPage !== this.maxPage;
 			},
-			offset () {
+			pageList () {
+				const pageList = [];
+				const { curPage, maxPage, pageLimit, firstPage } = this;
+				let pageStart = curPage - (pageLimit - pageLimit % 2) / 2;
+				const pageEnd = curPage + (pageLimit - pageLimit % 2) / 2 - maxPage;
+
+				pageStart = pageStart >= firstPage ? pageStart : firstPage;
+				pageStart = pageEnd > 0 ? pageStart - pageEnd : pageStart;
+
+				for (let i = pageStart, length = pageStart + pageLimit; i < length; i++) {
+					pageList.push(i);
+				}
+				return pageList;
 			},
 		},
 		methods: {

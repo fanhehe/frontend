@@ -20,7 +20,7 @@
 							<blog-item v-for="item in blog.blogList" :data = "item"></blog-item>	
 						</div>
 						<Page 
-							:maxPage = "20" 
+							:maxPage = "30" 
 							:pageLimit = "9" 
 							:curPage = "state.curPage" 
 							:handleClickPageItem = "handleClickPageItem"/>
