@@ -19,6 +19,11 @@
 						<div class = "blog-list-container">
 							<blog-item v-for="item in blog.blogList" :data = "item"></blog-item>	
 						</div>
+						<Page 
+							:curPage = "0" 
+							:maxPage = "20" 
+							:pageLimit = "9" 
+							:handleClickPageItem = "handleClickPageItem"/>
 					</div>
 					<div class = "blog-slider">
 						<div v-for = "(item, index) of blog.sliderArray"
@@ -42,10 +47,11 @@
 </template>>
 
 <script>
-	import { mapActions, mapState } from 'vuex';
+	import { mapState } from 'vuex';
 	// constants
 	import { blog as types } from '../../constants/vuex';
 	// modules
+	import Page from '../../components/Page';
 	import BlogItem from '../../components/BlogItem';
 	import Navigator from '../../components/Navigator';
 	import SliderItem from '../../components/SliderItem';
@@ -67,18 +73,20 @@
 				const type = types.GET_BLOG_LIST;
 				dispatch(type, {});
 			},
-			... mapActions(['queryTopic']),
+			handleClickPageItem (pageId) {
+				console.log(pageId, 'xxx');
+			},
 		},
 		components: {
 			Navigator,
 			BlogItem,
 			SliderItem,
 			Copyright,
+			Page,
 		},
 		mounted () {
 			const type = types.GET_BLOG_LIST;
 			const { dispatch } = this.$store;
-			console.log('xxx');
 			dispatch(type);
 		},
 	};
@@ -102,28 +110,31 @@
 		}
 	}
 	.blog-main-wrap {
+		width: 100%;
 		display: flex;
-		background: #ffffff;
 		padding: 0 20px;
+
+		background: #ffffff;
+		box-sizing: border-box;
 		border: 1px solid #e6e6e6;
 		box-shadow: 3px 3px 5px 0px #e6e6e6;
 
 		& > div {
 			max-width: 100%;
-			box-sizing: border-box;
+			overflow: hidden;
+			box-sizing: border-box;	
 		}
 		.blog-main {
 			display: flex;
-			flex-direction: column;
 			flex: 1px 3 0;
+			flex-direction: column;		
+			overflow: hidden;
 		}
 		.blog-slider {
 			display: flex;
 			flex: 1px 1 0;
 			padding: 20px 0 0 20px;
 			flex-direction: column;
-			box-sizing: border-box;
-			max-width: 234px;
 			border-left: 1px solid #e6e6e6;
 
 			& > div:not(:last-child) {

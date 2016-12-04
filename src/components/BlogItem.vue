@@ -1,6 +1,6 @@
 <template>
 	<div class = "blog-item-container">
-		<a class = "blog-item-preview" href="#"><img :src="data.preview || previewDefault" alt="这是一个头像" /></a>
+		<a class = "blog-item-preview" href="#"><img :src="data.author.avatar_url || previewDefault" alt="这是一个头像" /></a>
 		<div class = "blog-item-main">
 			<h4 class = "blog-item-title"><a href="#">{{ data.title }}</a></h4>
 			<div class = "blog-item-details">
