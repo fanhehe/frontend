@@ -1,5 +1,6 @@
 import promise from 'promise';
 import superagent from 'superagent';
+import querystring from 'querystring';
 
 const fetch = wrap(superagent, promise, config.host);
 
@@ -101,20 +102,21 @@ function wrap (superagent, Promise, opts) {
 	return request;
 }
 
-export function fetch2 (method, path, options) {
+export function fetch2 (method = 'GET', path = '', options = {}) {
 	let fetchPath = {};
 	let { success, error } = options;
-	const { data, type, commit} = options;
+	const { data, param, type, commit} = options;
 
 	method = method.toLowerCase();
-	fetchPath = fetch[method](path);
 	error = typeof error === 'function'? error: () => {};
 	success = typeof success === 'function'? success: () => {};
+	path = param ? `${path}?${querystring.stringify(param)}` : path;
 
+	fetchPath = fetch[method](path);
+	
 	if (method === 'post' && data) {
-		fetchPath = fetchPath.send(data)
+		fetchPath = fetchPath.send(data);
 	}
-
 	fetchPath.end(function (err, response) {
 		const status = response.status;
 		const { data, success: successful } = response.body;

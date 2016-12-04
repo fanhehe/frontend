@@ -10,7 +10,7 @@
 							<h2 class = "blog-title"><i class = "fa fa-list"></i>发现</h2>
 							<nav class = "blog-filter">
 								<a v-for = "item in blog.navList " 
-									:class = "{ active: item.id === filterActiveItem }"
+									:class = "{ active: item.id === state.filterActiveItem }"
 									@click = "handleClickFilter($event, item)">
 									{{ item.name }}
 								</a>
@@ -20,9 +20,9 @@
 							<blog-item v-for="item in blog.blogList" :data = "item"></blog-item>	
 						</div>
 						<Page 
-							:curPage = "0" 
 							:maxPage = "20" 
 							:pageLimit = "9" 
+							:curPage = "state.curPage" 
 							:handleClickPageItem = "handleClickPageItem"/>
 					</div>
 					<div class = "blog-slider">
@@ -59,9 +59,12 @@
 
 	export default {
 		data () {
-			const state = { filterActiveItem: 0 };
+			const state = {
+				curPage: 1,
+				filterActiveItem: 0,
+			};
 			return {
-				...state,
+				state,
 			};
 		},
 		computed: {
@@ -74,7 +77,22 @@
 				dispatch(type, {});
 			},
 			handleClickPageItem (pageId) {
-				console.log(pageId, 'xxx');
+				const { dispatch } = this.$store;
+				const param = {
+					page: pageId,
+				};
+				const success = () => {
+					this.state = {
+						...this.state,
+						curPage: pageId,
+					};
+					document.body.scrollTop = 0;
+				};
+				const type = types.GET_BLOG_LIST;
+				dispatch(type, {
+					param,
+					success,
+				});
 			},
 		},
 		components: {
