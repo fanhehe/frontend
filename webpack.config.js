@@ -59,8 +59,8 @@ var webpackConfig = {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss')
         },{
-            test: /\.scss$/,
-            loader: 'style-loader!css?modules&localIndentName=[name]__[local]__[hash:base64:5]!postcss!sass'
+            test: /\.sass$/,
+            loader: 'style-loader!css?localIndentName=[name]__[local]__[hash:base64:5]!postcss!sass'
         },{
             test: /\.(png|gif|jpg|jpeg)$/,
             loader: 'url-loader?limit=10000&name=images/[hash].[ext]'

@@ -100,15 +100,6 @@ $numStarThreeStars: 200;
 
 
 $width: 100%;
-
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-}
 .wrap {
   position: relative;
   width: 100%;

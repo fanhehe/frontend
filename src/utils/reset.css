@@ -1,0 +1,17 @@
+html{height: 100%;}
+body{height: 100%;font: 62.5% "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;}
+body,dl,dd,h1,h2,h3,h4,h5,h6,p,form {margin:0;}
+ol,ul{list-style-type: none;}
+ol,li,ul{margin:0; padding:0;}
+a {color: #155faa;font-size: 100%;text-decoration: none;}
+a:hover,a:active{color: #499ef3;}
+@media all and (min-width: 993px){
+	.container{
+		width: 1010px;
+	}
+}
+@media all and (max-width: 992px){
+	.container{
+		width: 100%;
+	}
+}

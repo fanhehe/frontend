@@ -4,5 +4,6 @@ export default [
     require('./About/'),
     require('./Blog/'),
     require('./Topic/'),
+    require('./Article'),
     // { path: '*', redirect: '/' },
 ];

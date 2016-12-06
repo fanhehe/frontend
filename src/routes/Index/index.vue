@@ -115,11 +115,6 @@ export default {
 <style lang = "sass" scoped>
     $leftSpace : 100px;
 
-    html, body {
-        padding: 0;
-        margin: 0;
-        font: 62.5% "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
-    }
     ::selection {
         background: transparent;
     };

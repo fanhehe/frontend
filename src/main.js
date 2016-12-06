@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import './utils/reset.css';
 import Routes from './routes/';
 import Store from './vuex/store';
 
