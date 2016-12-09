@@ -7,3 +7,10 @@ export const blog = {
 export const article = {
 	GET_ARTICLE_BY_ID: 'article/GET_ARTICLE_BY_ID',
 };
+
+export default {
+	...global,
+	...blog,
+	...article,
+};
+
