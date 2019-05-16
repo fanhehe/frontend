@@ -1,0 +1,30 @@
+{
+    "development": {
+        "env": "development",
+        "ip": "0.0.0.0",
+        "port": "3000",
+        "host": "http://localhost:3001",
+        "webpack": {
+            "publicPath": "/",
+            "path": "./build"
+        },
+        "proxy": {
+            "host": "https://cnodejs.org",
+            "port": "80"
+        }
+    },
+    "product": {
+        "env": "product",
+        "ip": "0.0.0.0",
+        "port": "3000",
+        "host": "http://115.29.49.204:5000",
+        "webpack": {
+            "publicPath": "/",
+            "path": "./build"
+        },
+        "proxy": {
+            "host": "https://cnodejs.org",
+            "port": "80"
+        }
+    }
+}
